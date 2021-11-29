@@ -9,7 +9,8 @@ import { Producto, ProductosResponse } from './interfaces/productos.interfaces';
 })
 export class AppComponent {
   
-    endpointProductos = 'http://test.cbtis051.edu.mx:8080/productos';
+    endpointProductos = 'http://test.cbtis051.edu.mx:3051/productos';
+    //endpointProductos = 'http://localhost:3051/productos';
 
     productos:Producto[] = [];
 
@@ -18,11 +19,11 @@ export class AppComponent {
     obtenerProductos() {
 
         // Hacemos la petición al servicio
-        this.http.get<ProductosResponse>(this.endpointProductos).subscribe(
+        this.http.get<Producto[]>(this.endpointProductos).subscribe(
             (resp) => {
                 console.log(resp);
                 // Obtenemos los productos y los guardamos en el array
-                this.productos = resp.data;
+                this.productos = resp;
             }
         );
 
